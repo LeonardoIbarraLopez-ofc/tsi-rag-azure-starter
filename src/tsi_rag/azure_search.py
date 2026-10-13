@@ -67,7 +67,22 @@ class AzureSearchClient:
             timeout=60,
         )
         response.raise_for_status()
-        return response.json()
+        # Azure puede devolver 204 No Content al actualizar un indice existente.
+        # En ese caso la operacion fue exitosa, pero no hay JSON que deserializar.
+        if not response.content:
+            return {
+                "name": self.index,
+                "dimensions": dimensions,
+                "status_code": response.status_code,
+            }
+        try:
+            return response.json()
+        except ValueError:
+            return {
+                "name": self.index,
+                "dimensions": dimensions,
+                "status_code": response.status_code,
+            }
 
     def upload_chunks(self, chunks: list[Chunk], batch_size: int = 100) -> int:
         uploaded = 0

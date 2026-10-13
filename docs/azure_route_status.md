@@ -12,6 +12,19 @@ uv run python scripts/index_documents.py
 
 Resultado esperado del primer comando: `Conexion Azure AI Search: OK`.
 
+## Ejecucion validada
+
+La ruta Azure fue ejecutada correctamente con la configuracion local, sin exponer la clave:
+
+```text
+Conexion Azure AI Search: OK
+Indices: ['tsi-rag-lab']
+Indice listo: tsi-rag-lab | dimensiones=128
+Chunks cargados: 19
+```
+
+Esto acredita la conexion, la existencia del indice, la dimension del vector y la carga del corpus.
+
 ## Evidencia aceptable para entrega
 
 Capturar la salida de los comandos anteriores con el endpoint y nombre del indice visibles, ocultando completamente `AZURE_SEARCH_ADMIN_KEY`. En caso de que el servicio Free no pueda crearse, conservar una captura o salida del Portal con el mensaje de bloqueo y dejar `RETRIEVER_BACKEND=local`.
