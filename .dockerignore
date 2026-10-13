@@ -1,0 +1,15 @@
+.env
+.git
+.gitignore
+.venv
+.uv-cache
+.docker-config
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+logs/*.jsonl
+reports/*.json
+reports/*.csv
+playwright-report
+test-results
