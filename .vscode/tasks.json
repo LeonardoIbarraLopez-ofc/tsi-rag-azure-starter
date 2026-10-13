@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TSI: iniciar API local",
+      "type": "shell",
+      "command": "uv run uvicorn tsi_rag.api:app --reload --host 127.0.0.1 --port 8000",
+      "problemMatcher": []
+    },
+    {
+      "label": "TSI: ejecutar tests",
+      "type": "shell",
+      "command": "uv run pytest",
+      "problemMatcher": []
+    },
+    {
+      "label": "TSI: evaluar golden set",
+      "type": "shell",
+      "command": "uv run python scripts/evaluate_golden_set.py",
+      "problemMatcher": []
+    }
+  ]
+}

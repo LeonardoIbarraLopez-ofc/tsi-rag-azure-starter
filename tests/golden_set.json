@@ -1,0 +1,62 @@
+[
+  {
+    "id": "G01",
+    "question": "¿Como deben almacenarse y rotarse los secretos de la aplicacion?",
+    "expected_source": "08_gestion_secretos.md"
+  },
+  {
+    "id": "G02",
+    "question": "¿Que diferencia existe entre health check y readiness check?",
+    "expected_source": "06_api_integracion_e2e.md"
+  },
+  {
+    "id": "G03",
+    "question": "¿Que pasos se siguen para hacer rollback despues de una liberacion fallida?",
+    "expected_source": "09_incidentes_rollback.md"
+  },
+  {
+    "id": "G04",
+    "question": "¿Por que el chunking influye en la calidad de un RAG?",
+    "expected_source": "02_chunking_embeddings.md"
+  },
+  {
+    "id": "G05",
+    "question": "¿Como combina Azure AI Search la busqueda textual y vectorial en una consulta hibrida?",
+    "expected_source": "03_busqueda_hibrida.md"
+  },
+  {
+    "id": "G06",
+    "question": "¿Que es Hit@K y para que sirve en la evaluacion de recuperacion?",
+    "expected_source": "04_evaluacion_rag.md"
+  },
+  {
+    "id": "G07",
+    "question": "¿Que riesgo presenta un documento con instrucciones de prompt injection?",
+    "expected_source": "05_seguridad_rag.md"
+  },
+  {
+    "id": "G08",
+    "question": "¿Que debe verificar una prueba E2E del flujo principal?",
+    "expected_source": "06_api_integracion_e2e.md"
+  },
+  {
+    "id": "G09",
+    "question": "¿Que debe registrar la observabilidad minima de una consulta RAG?",
+    "expected_source": "07_despliegue_observabilidad.md"
+  },
+  {
+    "id": "G10",
+    "question": "¿Cuando esta justificado utilizar RAG en lugar de un LLM aislado?",
+    "expected_source": "01_rag_fundamentos.md"
+  },
+  {
+    "id": "G11",
+    "question": "¿Cual es el precio actual de una licencia de Photoshop?",
+    "expected_no_answer": true
+  },
+  {
+    "id": "G12",
+    "question": "¿Cual es la capital de Mongolia?",
+    "expected_no_answer": true
+  }
+]

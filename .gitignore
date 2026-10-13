@@ -1,0 +1,15 @@
+.venv/
+.uv-cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.env
+logs/*.jsonl
+reports/*.json
+reports/*.csv
+playwright-report/
+test-results/
+.DS_Store

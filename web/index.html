@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TSI - RAG minimo viable</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 18px; background: #fafafa; color: #1f2937; }
+    .card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 22px; margin-bottom: 18px; }
+    h1 { margin-top: 0; }
+    textarea, select { width: 100%; box-sizing: border-box; padding: 10px; margin-top: 8px; border: 1px solid #cbd5e1; border-radius: 8px; }
+    button { margin-top: 12px; padding: 10px 18px; border: 0; border-radius: 8px; cursor: pointer; background: #1f4e79; color: white; font-weight: 650; }
+    pre { white-space: pre-wrap; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
+    .muted { color: #64748b; font-size: .92rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>TSI - RAG minimo viable</h1>
+    <p class="muted">Pregunta al corpus del laboratorio y verifica respuesta, fuentes y latencia.</p>
+    <label>Modo de recuperacion</label>
+    <select id="mode">
+      <option value="hybrid">Hybrid</option>
+      <option value="keyword">Keyword</option>
+      <option value="vector">Vector</option>
+    </select>
+    <label>Pregunta</label>
+    <textarea id="query" rows="4">¿Como deben gestionarse los secretos de una aplicacion?</textarea>
+    <button id="ask">Preguntar</button>
+  </div>
+  <div class="card">
+    <h2>Respuesta</h2>
+    <pre id="answer">Esperando consulta...</pre>
+    <div id="meta" class="muted"></div>
+  </div>
+<script>
+const askButton = document.getElementById('ask');
+askButton.addEventListener('click', async () => {
+  const answer = document.getElementById('answer');
+  const meta = document.getElementById('meta');
+  answer.textContent = 'Consultando...';
+  meta.textContent = '';
+  try {
+    const response = await fetch('/ask', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        query: document.getElementById('query').value,
+        mode: document.getElementById('mode').value,
+        top_k: 5
+      })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(JSON.stringify(data));
+    answer.textContent = data.answer;
+    const sources = data.sources.map(s => `${s.source}#${s.chunk_id}`).join(', ') || 'sin fuentes';
+    meta.textContent = `Fuentes: ${sources} | Total: ${data.total_ms} ms | Generador: ${data.generator}`;
+  } catch (err) {
+    answer.textContent = `ERROR: ${err}`;
+  }
+});
+</script>
+</body>
+</html>
